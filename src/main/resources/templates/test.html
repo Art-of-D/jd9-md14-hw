@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+    .note-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .note-container p {
+        margin-right: 10px;
+    }
+</style>
+
+<body>
+<h2>List of notes:</h2>
+<div th:each="note : ${notes}" class="note-container">
+    <div>
+        <p>
+            Title: <span th:text="${note.title}"></span><br>
+            Content: <span th:text="${note.content}"></span>
+        </p>
+    </div>
+    <div>
+        <form th:action="@{/note/edit}" method="get">
+            <input type="hidden" name="id" th:value="${note.id}" />
+            <button type="submit">Edit</button>
+        </form>
+        <form th:action="@{/note/delete}" method="post">
+            <input type="hidden" name="id" th:value="${note.id}" />
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

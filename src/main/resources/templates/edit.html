@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+    .form-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .form-row label {
+        width: 80px;
+    }
+
+    .form-row input[type="text"],
+    .form-row textarea {
+        flex: 1;
+    }
+</style>
+
+<body>
+<h2>Your note:</h2>
+<div>
+    <form action="/note/edit" method="post">
+        <input type="hidden" name="id" th:value="${note.id}" />
+        <div class="form-row">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" th:value="${note.title}" />
+        </div>
+        <div class="form-row">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" th:text="${note.content}"></textarea>
+        </div>
+        <button type="submit">Edit</button>
+    </form>
+</div>
+</body>
+
+</html>
